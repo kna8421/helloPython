@@ -1,7 +1,7 @@
 import os
 import pickle
-from Athlete import Athlete, AthleteList, sanitize
-from nester import get_coach_data, get_data,remove_multi
+from Athlete import Athlete, AthleteList, get_coach_data, sanitize
+from nester import  get_coach_data_org, get_data, remove_multi
 
 os.getcwd()
 os.chdir('../nester/source')
@@ -44,7 +44,7 @@ clear_sarah = sorted(set([sanitize(t) for t in sarah]))
 print(sarah_dict['Name'] + '\'s fastest records are : ' + str(clear_sarah[0:3]))
 
 #類別用法
-sarah = get_coach_data('sarah.txt')
+sarah = get_coach_data_org('sarah.txt')
 print(sarah.name + "'s birthday is " + str(sarah.bir))
 
 print(sarah.name + "'s fastest records are : " + str(sarah.top3()))
@@ -61,3 +61,7 @@ vera.append('1.31')
 print(str(vera.top3()))
 vera.extend(['2.22','1-21','2:22'])
 print(str(vera.top3()))
+
+james = get_coach_data('james.txt')
+james.name = "James"
+print(james.name + "'s fastest records are : " + str(james.top3()))

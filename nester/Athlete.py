@@ -1,3 +1,4 @@
+
 def sanitize(time_str):
     if '-' in time_str:
         splitter = '-'
@@ -38,3 +39,14 @@ class AthleteList(list):
     
     def top3(self):
         return sorted(set([sanitize(t) for t in self]))[0:3]
+
+
+
+def get_coach_data(file_name):
+    try:
+        with open(file_name) as f: 
+            data = f.readline()
+            templ = data.strip().split(',')
+            return AthleteList(templ.pop(0),templ.pop(0),templ)
+    except IOError as ierror:
+        print("IO Error: " + str(ierror))

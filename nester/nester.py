@@ -48,7 +48,7 @@ def get_data(file_name):
         print("IO error:" + str(ioerror))
 
 #類別用法
-def get_coach_data(file_name):
+def get_coach_data_org(file_name):
     try:
         with open(file_name) as f: 
             data = f.readline()
