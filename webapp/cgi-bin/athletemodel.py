@@ -1,6 +1,6 @@
 
 import pickle
-
+import json
 from athletelist import AthleteList
 
 def get_coach_data(filename):
@@ -34,4 +34,7 @@ def get_from_store():
         print('File error (get_from_store): ' + str(ioerr))
     return(all_athletes)
 
-#def get_names_from_store():
+def get_names_from_store():
+    athletes = get_from_store()
+    resp = [athletes[ath].name for ath in athletes]
+    return resp

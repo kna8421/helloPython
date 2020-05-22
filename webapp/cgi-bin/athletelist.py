@@ -26,3 +26,10 @@ class AthleteList(list):
     @property
     def clean_data(self):
         return(sorted(set([self.sanitize(t) for t in self])))
+
+    #Json不能處理字定義的類別 但是可以支援Python內建的類別 所以要把類別屬性資料轉換成字典
+    @property
+    def as_dict(self):
+        return({'Name': self.name,
+                'DOB': self.dob,
+                "Top3": self.top3})
