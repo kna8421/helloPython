@@ -18,6 +18,7 @@ class AthleteList(list):
         (mins, secs) = time_string.split(splitter)
         return(mins + '.' + secs)
 
+    #方法已被指派成類別特性　top3()傳回的資料就像是一個類別屬性，所以呼叫不能加() 要直接top3呼叫
     @property
     def top3(self):
         return(sorted(set([self.sanitize(t) for t in self]))[0:3])
