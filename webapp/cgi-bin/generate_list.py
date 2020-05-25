@@ -1,12 +1,13 @@
 import athletemodel
 import yate
 import glob
+from athletemodel import get_namesId_from_store
 
 #glob 模組 可以印出資 料夾底下所指定的檔案名稱
 data_files = glob.glob("data/*.txt")
 
-athletes = athletemodel.put_to_store(data_files)
-
+#athletes = athletemodel.put_to_store(data_files)
+athletes = get_namesId_from_store()
 #-----start-----
 print(yate.start_response())
 print(yate.include_header("Coach Kelly's List of Athletes"))
@@ -16,7 +17,8 @@ print(yate.start_form("generate_timing_data.py"))
 print(yate.para("Selectan athlete fron the list to work with:"))
 
 for athlete in athletes:
-    print(yate.radio_button("athlete", athletes[athlete].name))
+    #print(yate.radio_button("athlete", athletes[athlete].name))
+    print(yate.radio_button("athlete", athlete[0],athlete[1]))
 #表單最後產生Select按鈕
 print(yate.end_form("Select"))
 

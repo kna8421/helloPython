@@ -24,9 +24,9 @@ def start_form(the_url, form_type="POST"):
 def end_form(submit_msg="Submit"):
     return('<p></p><input type=submit value="' + submit_msg + '"></form>')
 
-def radio_button(rb_name, rb_value):
+def radio_button(rb_name, rb_value, rb_id):
     return('<input type="radio" name="' + rb_name +
-                             '" value="' + rb_value + '"> ' + rb_value + '<br />')
+                             '" value="' + str(rb_id) + '"> ' + rb_value + '<br />')
 
 def u_list(items):
     u_string = '<ul>'

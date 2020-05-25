@@ -1,6 +1,7 @@
 
 import pickle
 import json
+import sqlite3
 from athletelist import AthleteList
 
 def get_coach_data(filename):
@@ -37,4 +38,29 @@ def get_from_store():
 def get_names_from_store():
     athletes = get_from_store()
     resp = [athletes[ath].name for ath in athletes]
+    return resp
+
+db_name = 'coachdata.sqlite'
+def get_namesId_from_store():
+    conn =sqlite3.connect(db_name)
+    cursor = conn.cursor()
+    results = cursor.execute("""SELECT name,id FROM athletes""")
+    resp = results.fetchall()
+    conn.close()
+    return resp
+
+def get_athlete_from_id(id):
+    conn = sqlite3.connect(db_name)
+    cursor = conn.cursor()
+    results = cursor.execute("""SELECT name, dob FROM athletes WHERE id=?""",(id))
+    (name, dob) = results.fetchone()
+    results = cursor.execute("""SELECT value FROM timing_data WHERE athlete_id=?""",(id))
+    data =[row[0] for row in results.fetchall()]
+    resp = {
+        'Name': name,
+        "DOB": dob,
+        'data': data,
+        'top3':data[0:3]
+    }
+    conn.close()
     return resp
